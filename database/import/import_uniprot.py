@@ -19,30 +19,22 @@ from psycopg2.extras import execute_batch
 import time
 import sys
 
-# ============================================================
-# Configuration
-# ============================================================
-
-# PostgreSQL connection string — adjust to your setup
+# PostgreSQL connection string
 DB_URL = "postgresql://postgres:postgres@localhost:5432/uniprot_db"
 
 # UniProt API base URL
 UNIPROT_API = "https://rest.uniprot.org/uniprotkb"
 
 # Search query: reviewed human proteins (Swiss-Prot)
-# Adjust organism_id or query as needed
 QUERY = "organism_id:9606 AND reviewed:true"
 
-# Number of proteins to import (assignment says "few representative records")
+# Number of proteins to import
 PROTEIN_COUNT = 50
 
-# Batch size for API requests (max 500 per request)
+# Batch size for API requests
 API_BATCH_SIZE = 25
 
-# ============================================================
 # Helpers
-# ============================================================
-
 ASPECT_MAP = {"P": "Biological Process", "F": "Molecular Function", "C": "Cellular Component"}
 
 
@@ -106,11 +98,7 @@ def get_feature_location(feature):
     end = loc.get("end", {}).get("value")
     return start, end
 
-
-# ============================================================
 # Database insert functions
-# ============================================================
-
 def insert_organism(cur, entry):
     """Insert organism if not already present."""
     org = entry.get("organism", {})
@@ -282,11 +270,7 @@ def insert_cross_references(cur, entry, accession):
             "VALUES (%s, %s, %s) ON CONFLICT DO NOTHING",
             rows)
 
-
-# ============================================================
 # Main import logic
-# ============================================================
-
 def import_proteins():
     """Main function: search proteins, fetch full entries, insert into DB."""
     print(f"Searching UniProt for proteins: {QUERY}")
