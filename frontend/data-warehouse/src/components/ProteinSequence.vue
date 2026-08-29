@@ -13,9 +13,7 @@ async function copySequence(sequence: string): Promise<void> {
     <div class="heading">
       <h2>Sequence</h2>
 
-      <button class="button" type="button" @click="copySequence(sequence)">
-        Copy sequence
-      </button>
+      <button class="button" type="button" @click="copySequence(sequence)">Copy sequence</button>
     </div>
 
     <pre>{{ sequence }}</pre>

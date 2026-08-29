@@ -23,19 +23,14 @@ onMounted(() => {
         <p>Search, inspect, create, update, and delete protein records.</p>
       </div>
 
-      <RouterLink class="button button-primary" to="/proteins/new">
-        Create protein
-      </RouterLink>
+      <RouterLink class="button button-primary" to="/proteins/new"> Create protein </RouterLink>
     </div>
 
     <ProteinSearchForm
       :initial-search="proteinStore.search"
       :initial-reviewed="proteinStore.reviewed"
       :initial-taxon-id="proteinStore.taxonId"
-      @search="
-        (search, reviewed, taxonId) =>
-          proteinStore.applySearch(search, reviewed, taxonId)
-      "
+      @search="(search, reviewed, taxonId) => proteinStore.applySearch(search, reviewed, taxonId)"
     />
 
     <AppAlert

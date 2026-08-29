@@ -20,9 +20,7 @@ defineProps<{
         <dt>Organism</dt>
         <dd>
           {{ details.organism.scientificName }}
-          <span v-if="details.organism.commonName">
-            ({{ details.organism.commonName }})
-          </span>
+          <span v-if="details.organism.commonName"> ({{ details.organism.commonName }}) </span>
         </dd>
       </div>
 

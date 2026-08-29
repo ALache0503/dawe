@@ -32,9 +32,7 @@ async function loadDetails(): Promise<void> {
       errorMessage.value = `Protein ${props.accession} was not found.`
     } else {
       errorMessage.value =
-        error instanceof Error
-          ? error.message
-          : 'Protein details could not be loaded.'
+        error instanceof Error ? error.message : 'Protein details could not be loaded.'
     }
   } finally {
     isLoading.value = false
@@ -57,10 +55,7 @@ async function deleteProtein(): Promise<void> {
     await proteinApi.remove(props.accession)
     await router.push({ name: 'protein-list' })
   } catch (error) {
-    errorMessage.value =
-      error instanceof Error
-        ? error.message
-        : 'Protein could not be deleted.'
+    errorMessage.value = error instanceof Error ? error.message : 'Protein could not be deleted.'
   } finally {
     isDeleting.value = false
   }
@@ -107,11 +102,7 @@ watch(
 
     <LoadingIndicator v-if="isLoading" />
 
-    <AppAlert
-      v-else-if="errorMessage"
-      variant="error"
-      :message="errorMessage"
-    />
+    <AppAlert v-else-if="errorMessage" variant="error" :message="errorMessage" />
 
     <template v-else-if="details">
       <header class="detail-heading">
@@ -128,11 +119,7 @@ watch(
 
         <p v-if="details.comments.length === 0">No comments available.</p>
 
-        <article
-          v-for="comment in details.comments"
-          :key="comment.commentId"
-          class="card"
-        >
+        <article v-for="comment in details.comments" :key="comment.commentId" class="card">
           <h3>{{ comment.typeName }}</h3>
           <p>{{ comment.commentText }}</p>
         </article>
@@ -205,9 +192,7 @@ watch(
       <section class="detail-section">
         <h2>Cross references</h2>
 
-        <p v-if="details.crossReferences.length === 0">
-          No cross references available.
-        </p>
+        <p v-if="details.crossReferences.length === 0">No cross references available.</p>
 
         <div v-else class="table-wrapper">
           <table>

@@ -26,10 +26,7 @@ async function createProtein(payload: CreateProteinRequest): Promise<void> {
       },
     })
   } catch (error) {
-    errorMessage.value =
-      error instanceof Error
-        ? error.message
-        : 'Protein could not be created.'
+    errorMessage.value = error instanceof Error ? error.message : 'Protein could not be created.'
   } finally {
     isSubmitting.value = false
   }
@@ -41,11 +38,7 @@ async function createProtein(payload: CreateProteinRequest): Promise<void> {
     <h1>Create protein</h1>
     <p>Create a new protein record in the data warehouse.</p>
 
-    <AppAlert
-      v-if="errorMessage"
-      variant="error"
-      :message="errorMessage"
-    />
+    <AppAlert v-if="errorMessage" variant="error" :message="errorMessage" />
 
     <ProteinForm
       submit-label="Create protein"

@@ -41,9 +41,7 @@ export const proteinApi = {
   },
 
   getDetails(accession: string): Promise<ProteinDetails> {
-    return apiRequest<ProteinDetails>(
-      `/proteins/${encodeURIComponent(accession)}`,
-    )
+    return apiRequest<ProteinDetails>(`/proteins/${encodeURIComponent(accession)}`)
   },
 
   create(payload: CreateProteinRequest): Promise<void> {
@@ -56,10 +54,7 @@ export const proteinApi = {
     })
   },
 
-  update(
-    accession: string,
-    payload: UpdateProteinRequest,
-  ): Promise<void> {
+  update(accession: string, payload: UpdateProteinRequest): Promise<void> {
     return apiRequest<void>(`/proteins/${encodeURIComponent(accession)}`, {
       method: 'PUT',
       headers: {

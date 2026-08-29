@@ -14,23 +14,13 @@ defineEmits<{
 
 <template>
   <nav class="pagination" aria-label="Pagination">
-    <button
-      class="button"
-      type="button"
-      :disabled="!hasPreviousPage"
-      @click="$emit('previous')"
-    >
+    <button class="button" type="button" :disabled="!hasPreviousPage" @click="$emit('previous')">
       Previous
     </button>
 
     <span>Page {{ page }} of {{ totalPages }}</span>
 
-    <button
-      class="button"
-      type="button"
-      :disabled="!hasNextPage"
-      @click="$emit('next')"
-    >
+    <button class="button" type="button" :disabled="!hasNextPage" @click="$emit('next')">
       Next
     </button>
   </nav>

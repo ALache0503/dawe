@@ -27,10 +27,7 @@ async function loadProtein(): Promise<void> {
     const details = await proteinApi.getDetails(props.accession)
     protein.value = details.protein
   } catch (error) {
-    errorMessage.value =
-      error instanceof Error
-        ? error.message
-        : 'Protein could not be loaded.'
+    errorMessage.value = error instanceof Error ? error.message : 'Protein could not be loaded.'
   } finally {
     isLoading.value = false
   }
@@ -50,10 +47,7 @@ async function updateProtein(payload: UpdateProteinRequest): Promise<void> {
       },
     })
   } catch (error) {
-    errorMessage.value =
-      error instanceof Error
-        ? error.message
-        : 'Protein could not be updated.'
+    errorMessage.value = error instanceof Error ? error.message : 'Protein could not be updated.'
   } finally {
     isSubmitting.value = false
   }
@@ -70,14 +64,10 @@ onMounted(() => {
 
     <LoadingIndicator v-if="isLoading" />
 
-    <AppAlert
-      v-else-if="errorMessage"
-      variant="error"
-      :message="errorMessage"
-    />
+    <AppAlert v-else-if="errorMessage" variant="error" :message="errorMessage" />
 
     <ProteinForm
-    v-else-if="protein"
+      v-else-if="protein"
       :protein="protein"
       :include-accession="false"
       submit-label="Save changes"

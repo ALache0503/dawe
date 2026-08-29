@@ -23,9 +23,7 @@ defineProps<{
 
       <tbody>
         <tr v-if="proteins.length === 0">
-          <td colspan="7" class="empty-state">
-            No proteins match the current search criteria.
-          </td>
+          <td colspan="7" class="empty-state">No proteins match the current search criteria.</td>
         </tr>
 
         <tr v-for="protein in proteins" :key="protein.accession">

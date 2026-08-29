@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import { computed, reactive, watch } from 'vue'
 
-import type {
-  CreateProteinRequest,
-  Protein,
-  UpdateProteinRequest,
-} from '@/types/protein'
-
+import type { CreateProteinRequest, Protein, UpdateProteinRequest } from '@/types/protein'
 
 const props = withDefaults(
   defineProps<{
@@ -60,6 +55,10 @@ function createInitialState(protein?: Protein): ProteinFormState {
 
 const form = reactive<ProteinFormState>(createInitialState(props.protein))
 const localError = computed(() => {
+  if (props.includeAccession && !form.accession.trim()) {
+    return 'Accession is required.'
+  }
+
   if (!form.taxonId || Number(form.taxonId) <= 0) {
     return 'Taxon ID must be a positive number.'
   }
@@ -135,12 +134,7 @@ function submit(): void {
   <form class="protein-form" @submit.prevent="submit">
     <label v-if="includeAccession">
       Accession
-      <input
-        v-model.trim="form.accession"
-        maxlength="10"
-        required
-        placeholder="e.g. P69905"
-      />
+      <input v-model.trim="form.accession" maxlength="10" required placeholder="e.g. P69905" />
     </label>
 
     <label>
@@ -176,12 +170,7 @@ function submit(): void {
 
     <label>
       Mass in Da
-      <input
-        v-model="form.mass"
-        type="number"
-        min="1"
-        placeholder="Optional"
-      />
+      <input v-model="form.mass" type="number" min="1" placeholder="Optional" />
     </label>
 
     <label>
@@ -196,10 +185,7 @@ function submit(): void {
 
     <label class="full-width">
       Protein existence
-      <input
-        v-model.trim="form.proteinExistence"
-        placeholder="Optional"
-      />
+      <input v-model.trim="form.proteinExistence" placeholder="Optional" />
     </label>
 
     <label class="full-width">

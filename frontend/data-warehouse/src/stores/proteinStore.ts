@@ -2,10 +2,7 @@ import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 
 import { proteinApi } from '@/services/proteinApi'
-import type {
-  ProteinListItem,
-  ProteinSearchParams,
-} from '@/types/protein'
+import type { ProteinListItem, ProteinSearchParams } from '@/types/protein'
 
 export const useProteinStore = defineStore('proteins', () => {
   const items = ref<ProteinListItem[]>([])
@@ -47,10 +44,7 @@ export const useProteinStore = defineStore('proteins', () => {
       totalItems.value = result.totalItems
       totalPages.value = result.totalPages
     } catch (error) {
-      errorMessage.value =
-        error instanceof Error
-          ? error.message
-          : 'Proteins could not be loaded.'
+      errorMessage.value = error instanceof Error ? error.message : 'Proteins could not be loaded.'
     } finally {
       isLoading.value = false
     }

@@ -12,17 +12,14 @@ const emit = defineEmits<{
 }>()
 
 const search = ref(props.initialSearch)
-const reviewedValue = ref(
-  props.initialReviewed === undefined ? '' : String(props.initialReviewed),
-)
+const reviewedValue = ref(props.initialReviewed === undefined ? '' : String(props.initialReviewed))
 const taxonId = ref(props.initialTaxonId?.toString() ?? '')
 
 const localError = ref<string | null>(null)
 
 function submit(): void {
-  const normalizedTaxonId = 
-    taxonId.value === '' ? undefined : Number(taxonId.value)
-  
+  const normalizedTaxonId = taxonId.value === '' ? undefined : Number(taxonId.value)
+
   if (
     normalizedTaxonId !== undefined &&
     (!Number.isInteger(normalizedTaxonId) || normalizedTaxonId <= 0)
@@ -31,10 +28,7 @@ function submit(): void {
     return
   }
 
-  const normalizedReviewed =
-    reviewedValue.value === ''
-      ? undefined
-      : reviewedValue.value === 'true'
+  const normalizedReviewed = reviewedValue.value === '' ? undefined : reviewedValue.value === 'true'
 
   emit('search', search.value, normalizedReviewed, normalizedTaxonId)
 }
@@ -52,11 +46,7 @@ function reset(): void {
   <form class="search-form" @submit.prevent="submit">
     <label>
       Search proteins
-      <input
-        v-model="search"
-        type="search"
-        placeholder="Accession, entry name, or protein name"
-      />
+      <input v-model="search" type="search" placeholder="Accession, entry name, or protein name" />
     </label>
 
     <label>
@@ -70,12 +60,7 @@ function reset(): void {
 
     <label>
       Taxon ID
-      <input
-        v-model="taxonId"
-        type="number"
-        min="1"
-        placeholder="e.g. 9606"
-      />
+      <input v-model="taxonId" type="number" min="1" placeholder="e.g. 9606" />
     </label>
 
     <div class="actions">
