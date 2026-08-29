@@ -3,17 +3,17 @@ package domain
 import "strings"
 
 type Protein struct {
-	Accession        string
-	TaxonID          int
-	EntryName        string
-	ProteinName      string
-	Reviewed         bool
-	AnnotationScore  int16
-	Mass             *int
-	Length           int
-	Sequence         string
-	ProteinExistence *string
-	GeneNames        *string
+	Accession        string  `json:"accession"`
+	TaxonID          int     `json:"taxonId"`
+	EntryName        string  `json:"entryName"`
+	ProteinName      string  `json:"proteinName"`
+	Reviewed         bool    `json:"reviewed"`
+	AnnotationScore  int16   `json:"annotationScore"`
+	Mass             *int    `json:"mass"`
+	Length           int     `json:"length"`
+	Sequence         string  `json:"sequence"`
+	ProteinExistence *string `json:"proteinExistence"`
+	GeneNames        *string `json:"geneNames"`
 }
 
 type Organism struct {
