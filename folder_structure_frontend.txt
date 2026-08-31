@@ -1,0 +1,12 @@
+frontend
+└── data-warehouse
+    ├── public
+    └── src
+        ├── assets
+        ├── components
+        ├── router
+        ├── services
+        ├── stores
+        ├── test
+        ├── types
+        └── views
