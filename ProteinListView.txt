@@ -1,0 +1,6 @@
+ProteinListView
+├── ProteinSearchForm
+├── ProteinTable
+├── PaginationControls
+├── LoadingIndicator
+└── AppAlert
