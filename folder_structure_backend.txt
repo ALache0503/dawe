@@ -8,5 +8,3 @@ backend
     ├── application
     ├── domain
     └── ports
-
-10 directories
